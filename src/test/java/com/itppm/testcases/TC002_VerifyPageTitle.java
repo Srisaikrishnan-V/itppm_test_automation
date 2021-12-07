@@ -9,7 +9,7 @@ import com.itppm.pages.HomePage;
 public class TC002_VerifyPageTitle extends BaseTest {
 
     @Description("Verifying the boat Airdopes Product title with incorrect title")
-    @Test
+    @Test(groups = {"regression"})
     public void verifyPageTitle() throws Exception {
         String title = new HomePage()
                 .mouseOverToAccountsList()
