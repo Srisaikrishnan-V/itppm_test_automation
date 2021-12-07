@@ -4,12 +4,12 @@ import org.testng.annotations.*;
 
 public class BaseTest extends BaseMethods {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
         initializeDriver(getPropertyValue("browser"));
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
