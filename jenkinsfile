@@ -1,9 +1,8 @@
 pipeline
 {
 agent any
-
 tools{
-maven '3.8.4'
+Maven '3.8.4'
 }
 environment{
 JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home'
@@ -23,7 +22,6 @@ stage('deploy')
 steps{
 echo 'deploying the code'
 }
-
 }
 stage('test')
 {
@@ -31,6 +29,5 @@ steps{
 sh "mvn test -PSmoke"
 }
 }
-
 }
 }
