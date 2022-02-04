@@ -1,8 +1,9 @@
 pipeline
 {
 agent any
+
 tools{
-Maven '3.8.4'
+Maven 'M3'
 }
 environment{
 JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home'
