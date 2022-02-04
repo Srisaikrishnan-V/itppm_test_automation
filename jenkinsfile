@@ -1,13 +1,11 @@
 pipeline
 {
 agent any
-
 tools{
-Maven 'M3'
+maven 'maven 3'
+jdk 'java 11'
 }
-environment{
-JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home'
-}
+
 stages
 {
 stage('Build')
