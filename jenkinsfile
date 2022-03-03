@@ -8,7 +8,7 @@ stage('Build')
 {
 steps
 {
-sh "mvn clean install -Dmaven.test.skip=true -Dfindbugs.skip=true"
+sh "clean"
 }
 
 }
@@ -21,7 +21,7 @@ echo 'deploying the code'
 stage('test')
 {
 steps{
-sh "mvn test -PSmoke"
+sh "clean compile test -PSmoke"
 }
 }
 }
