@@ -108,7 +108,7 @@ public class BaseMethods {
 			}
 			
 
-			////once coloumn is identified then scan entire testcase coloum to identify purcjhase testcase row
+			////once coloumn is identified then scan entire testcase coloum to identify purchase testcase row
 			while(rows.hasNext())
 			{
 
@@ -123,7 +123,7 @@ public class BaseMethods {
 			while(cv.hasNext())
 			{
 			Cell c= cv.next();
-			a.add(c.getStringCellValue());
+			
 			
 			if(c.getCellType()==CellType.STRING)
 			{
@@ -146,7 +146,7 @@ public class BaseMethods {
             throw new Exception("Property name " + key + " is not found. Please check data.properties file");
         }
         
-        return a.get(2);
+        return a.get(1);
         
         }
     
