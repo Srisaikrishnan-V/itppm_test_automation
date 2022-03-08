@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -12,6 +13,12 @@ import com.itppm.constants.FrameworkContants;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.NumberToTextConverter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -57,7 +64,7 @@ public class BaseMethods {
         return driver;
     }
 
-    public static String getPropertyValue(String key) throws Exception {
+   /* public static String getPropertyValue(String key) throws Exception {
         String value = "";
         Properties property = new Properties();
         FileInputStream file = new FileInputStream(FrameworkContants.getPropertiesfile());
@@ -67,7 +74,82 @@ public class BaseMethods {
             throw new Exception("Property name " + key + " is not found. Please check data.properties file");
         }
         return value;
-    }
+    }*/
+    
+    public static String getPropertyValue(String key) throws Exception {
+    	ArrayList<String> a=new ArrayList<String>();
+        
+        FileInputStream fis=new FileInputStream("/Users/kuvenkatraman/Desktop/Automation_Framework_Inputs.xlsx");
+        try (XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
+			int sheets=workbook.getNumberOfSheets();
+			for(int i=0;i<sheets;i++)
+			{
+			if(workbook.getSheetName(i).equalsIgnoreCase("testdata"))
+			{
+			XSSFSheet sheet=workbook.getSheetAt(i);
+			//Identify Testcases coloum by scanning the entire 1st row
+
+			Iterator<Row>  rows= sheet.iterator();// sheet is collection of rows
+			Row firstrow= rows.next();
+			Iterator<Cell> ce=firstrow.cellIterator();//row is collection of cells
+			int k=0;
+			int coloumn = 0;
+			while(ce.hasNext())
+			{
+			Cell value1=ce.next();
+
+			if(value1.getStringCellValue().equalsIgnoreCase("TestCases"))
+			{
+			coloumn=k;
+
+			}
+
+			k++;
+			}
+			
+
+			////once coloumn is identified then scan entire testcase coloum to identify purcjhase testcase row
+			while(rows.hasNext())
+			{
+
+			Row r=rows.next();
+
+			if(r.getCell(coloumn).getStringCellValue().equalsIgnoreCase(key))
+			{
+
+			////after you grab purchase testcase row = pull all the data of that row and feed into test
+
+			Iterator<Cell>  cv=r.cellIterator();
+			while(cv.hasNext())
+			{
+			Cell c= cv.next();
+			a.add(c.getStringCellValue());
+			
+			if(c.getCellType()==CellType.STRING)
+			{
+
+				a.add(c.getStringCellValue());
+			}
+			else{
+
+				a.add(NumberToTextConverter.toText(c.getNumericCellValue()));
+
+			}
+			}
+			}
+			}
+			}
+			}
+		}
+
+        if (a.get(1) == null) {
+            throw new Exception("Property name " + key + " is not found. Please check data.properties file");
+        }
+        
+        return a.get(2);
+        
+        }
+    
 
     public static WebDriver getDriver() {
         return driver;
