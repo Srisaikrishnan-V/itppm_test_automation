@@ -19,11 +19,11 @@ public class TC001_VerifyEarPodProduct extends BaseTest {
                 .clickContinue()
                 .enterPassword(getPropertyValue("password"))
                 .clickSignIn()
-                .typeSearchBox("boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)")
+                .typeSearchBox(getExcelValue("TC001","Search"))
                 .clickSearch()
                 .selectBoatEarPods()
                 .getTitle();
-        Assert.assertEquals(title, "Amazon.in : boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)");
+        Assert.assertEquals(title, getExcelValue("TC001","ExpectedTitle"));
     }
 
     @Test(groups = {"smoke"})

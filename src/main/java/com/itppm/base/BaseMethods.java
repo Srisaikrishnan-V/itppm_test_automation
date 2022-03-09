@@ -64,7 +64,7 @@ public class BaseMethods {
         return driver;
     }
 
-   /* public static String getPropertyValue(String key) throws Exception {
+   public static String getPropertyValue(String key) throws Exception {
         String value = "";
         Properties property = new Properties();
         FileInputStream file = new FileInputStream(FrameworkContants.getPropertiesfile());
@@ -74,17 +74,17 @@ public class BaseMethods {
             throw new Exception("Property name " + key + " is not found. Please check data.properties file");
         }
         return value;
-    }*/
+    }
     
-    public static String getPropertyValue(String key) throws Exception {
+    public static String getExcelValue(String sheetName,String key) throws Exception {
     	ArrayList<String> a=new ArrayList<String>();
         
-        FileInputStream fis=new FileInputStream("/Users/kuvenkatraman/Desktop/Automation_Framework_Inputs.xlsx");
+        FileInputStream fis=new FileInputStream(FrameworkContants.getExcelFile());
         try (XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
 			int sheets=workbook.getNumberOfSheets();
 			for(int i=0;i<sheets;i++)
 			{
-			if(workbook.getSheetName(i).equalsIgnoreCase("testdata"))
+			if(workbook.getSheetName(i).equalsIgnoreCase(sheetName))
 			{
 			XSSFSheet sheet=workbook.getSheetAt(i);
 			//Identify Testcases coloum by scanning the entire 1st row
