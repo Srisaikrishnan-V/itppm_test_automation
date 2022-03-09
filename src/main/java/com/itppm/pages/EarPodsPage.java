@@ -9,7 +9,7 @@ public class EarPodsPage extends BaseMethods {
 
     @FindBy(xpath = "(//*[text()[contains(.,'₹1,000 - ₹5,000')]])[1]")
     private WebElement eleFilter1Kto5K;
-    @FindBy(xpath = "//*[text()='boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)']")
+    @FindBy(xpath = "//*[text()='boAt Airdopes 441 Pro Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)']")
     private WebElement eleFBoatEarpod;
 
     public EarPodsPage() {

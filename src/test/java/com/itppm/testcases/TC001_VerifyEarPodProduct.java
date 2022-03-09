@@ -2,12 +2,19 @@ package com.itppm.testcases;
 
 
 import com.itppm.base.BaseTest;
+import com.itppm.constants.FrameworkContants;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import com.itppm.pages.HomePage;
 
 public class TC001_VerifyEarPodProduct extends BaseTest {
+
+    @BeforeTest
+    public void setData(){
+         dataSheetName = "TC003_ExcelTest";
+    }
 
     @Description("Verifying the boat Airdopes Product title")
     @Test(groups = {"regression"})
@@ -23,6 +30,7 @@ public class TC001_VerifyEarPodProduct extends BaseTest {
                 .clickSearch()
                 .selectBoatEarPods()
                 .getTitle();
+        Thread.sleep(5000);
         Assert.assertEquals(title, "Amazon.in : boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)");
     }
 
@@ -39,11 +47,12 @@ public class TC001_VerifyEarPodProduct extends BaseTest {
                 .clickSearch()
                 .selectBoatEarPods()
                 .getTitle();
+        Thread.sleep(5000);
         Assert.assertEquals(title, "Amazon.in : boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)");
     }
 
-    @Test(groups = {"smoke", "regression"})
-    public void verifyEarPodsSmokeRegr() throws Exception {
+    @Test(groups = {"smoke", "regression"}, dataProvider = "fetchData")
+    public void verifyEarPodsSmokeRegr(String input) throws Exception {
         String title = new HomePage()
                 .mouseOverToAccountsList()
                 .clickHomePageSignIn()
@@ -51,10 +60,11 @@ public class TC001_VerifyEarPodProduct extends BaseTest {
                 .clickContinue()
                 .enterPassword(getPropertyValue("password"))
                 .clickSignIn()
-                .typeSearchBox("boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)")
+                .typeSearchBox(input)
                 .clickSearch()
                 .selectBoatEarPods()
                 .getTitle();
-        Assert.assertEquals(title, "Amazon.in : boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)");
+        Thread.sleep(5000);
+        Assert.assertEquals(title, "Amazon.in : boAt Airdopes 441 Pro Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)");
     }
 }
