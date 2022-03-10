@@ -2,21 +2,21 @@ package com.itppm.testcases;
 
 
 import com.itppm.base.BaseTest;
-import com.itppm.constants.FrameworkContants;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import com.itppm.pages.HomePage;
 
 public class TC001_VerifyEarPodProduct extends BaseTest {
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public void setData(){
          dataSheetName = "TC003_ExcelTest";
     }
 
-    @Description("Verifying the boat Airdopes Product title")
+    @Description("Verifying the boat Airdopes Product title - Regression")
     @Test(groups = {"regression"})
     public void verifyEarPodsRegr() throws Exception {
         String title = new HomePage()
