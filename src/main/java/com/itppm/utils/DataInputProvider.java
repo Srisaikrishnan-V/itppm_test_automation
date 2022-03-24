@@ -12,8 +12,9 @@ public class DataInputProvider {
         Object[][] data = null ;
 
         try {
-            XSSFWorkbook workbook = new XSSFWorkbook(FrameworkContants.getInputFile() +dataSheetName+".xlsx");
-            XSSFSheet sheet = workbook.getSheetAt(0);
+            XSSFWorkbook workbook = new XSSFWorkbook(FrameworkContants.getInputFile());
+           // XSSFSheet sheet = workbook.getSheetAt(0);
+            XSSFSheet sheet = workbook.getSheet(dataSheetName);
 
             // get the number of rows
             int rowCount = sheet.getLastRowNum();
