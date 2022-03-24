@@ -9,11 +9,18 @@ public class EarPodsPage extends BaseMethods {
 
     @FindBy(xpath = "(//*[text()[contains(.,'₹1,000 - ₹5,000')]])[1]")
     private WebElement eleFilter1Kto5K;
-    @FindBy(xpath = "//*[text()='boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)']")
+    @FindBy(xpath = "//span[contains(text(), 'boAt Airdopes 441 Pro ')]")
     private WebElement eleFBoatEarpod;
+    //Dynamic XPath
+    private String dynamicProductPath = "//*[text()='%s']";
 
     public EarPodsPage() {
         PageFactory.initElements(driver, this);
+    }
+
+    public void clickProduct(String product){
+        String productPath = getXpath(dynamicProductPath, product);
+        click(productPath);
     }
 
     public EarPodsPage click1000To5000() {

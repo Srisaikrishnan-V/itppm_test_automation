@@ -26,7 +26,6 @@ public class BaseMethods {
     public static WebDriver driver;
     public static Logger log = LogManager.getLogger(BaseMethods.class.getName());
 
-
     public WebDriver initializeDriver(String browser) throws IOException {
         try {
             if (browser.equalsIgnoreCase("chrome")) {
@@ -163,6 +162,22 @@ public class BaseMethods {
         }
     }
 
+    public void click(String path) {
+        String text = "";
+        try {
+            WebElement ele = getDriver().findElement(By.xpath(path));
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.until(ExpectedConditions.elementToBeClickable(ele));
+            text = ele.getText();
+            ele.click();
+            log.info("The element " + text + " is clicked");
+        } catch (InvalidElementStateException e) {
+            log.error(e + " is occurred during execution when trying to click " + text);
+        } catch (WebDriverException e) {
+            log.error(e + " is occurred during execution when trying to click " + text);
+        }
+    }
+
     public String getText(WebElement ele) {
         String bReturn = "";
         try {
@@ -210,15 +225,12 @@ public class BaseMethods {
             if (getTitle().contains(title)) {
                 log.info("The title of the page contains the text :" + title);
                 bReturn = true;
-                System.out.println("VerifyPartial Title Passed");
             } else {
-                System.out.println("VerifyPartial Title failed");
                 log.error("The title of the page:" + driver.getTitle() + " did not match with the value :" + title);
             }
         } catch (WebDriverException e) {
             log.error(e + " occured while verifying the title");
         }
-        System.out.println(getTitle());
         return bReturn;
 
     }
@@ -269,6 +281,16 @@ public class BaseMethods {
             }
         } catch (WebDriverException e) {
             log.error("WebDriverException : " + e.getMessage());
+        }
+    }
+
+    public void closeCurrentWindow(){
+        try {
+            driver.close();
+            driver.switchTo().window(driver.getWindowHandle());
+            log.info("Current window closed successfully and returned to previous window");
+        } catch (Exception e) {
+            log.error("Current window not closed successfully");
         }
     }
 
@@ -346,6 +368,10 @@ public class BaseMethods {
         } catch (Exception e) {
             log.error("Mouse over is not working");
         }
+    }
+
+    public String getXpath(String xpath, String value){
+        return String.format(xpath, value);
     }
 
 
