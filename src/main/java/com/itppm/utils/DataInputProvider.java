@@ -1,6 +1,6 @@
 package com.itppm.utils;
 
-import com.itppm.constants.FrameworkContants;
+import com.itppm.constants.FrameworkConstants;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,7 +12,7 @@ public class DataInputProvider {
         Object[][] data = null ;
 
         try {
-            XSSFWorkbook workbook = new XSSFWorkbook(FrameworkContants.getInputFile());
+            XSSFWorkbook workbook = new XSSFWorkbook(FrameworkConstants.getInputFile());
            // XSSFSheet sheet = workbook.getSheetAt(0);
             XSSFSheet sheet = workbook.getSheet(dataSheetName);
 

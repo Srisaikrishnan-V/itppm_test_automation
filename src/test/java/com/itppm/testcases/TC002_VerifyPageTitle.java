@@ -17,14 +17,7 @@ public class TC002_VerifyPageTitle extends BaseTest {
     @Description("Verifying the boat Airdopes Product title with incorrect title")
     @Test(groups = {"regression", "smoke"},dataProvider = "fetchData")
     public void verifyPageTitle(String expectedTitle) throws Exception {
-        String title = new HomePage()
-                .mouseOverToAccountsList()
-                .clickHomePageSignIn()
-                .enterEmail(getPropertyValue("username"))
-                .clickContinue()
-                .enterPassword(getPropertyValue("password"))
-                .clickSignIn()
-                .getTitle();
+        String title = getTitle();
         Assert.assertEquals(title, expectedTitle);
 
     }
