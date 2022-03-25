@@ -6,10 +6,11 @@ import com.itppm.base.BaseTest;
 import com.itppm.pages.LandingPage;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import com.itppm.pages.HomePage;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class TC001_VerifyEarPodProduct extends BaseTest {
@@ -22,13 +23,7 @@ public class TC001_VerifyEarPodProduct extends BaseTest {
     @Description("Verifying the boat Airdopes Product title - Regression")
     @Test(groups = {"regression"})
     public void verifyEarPodsRegr() throws Exception {
-        String title = new HomePage()
-                .mouseOverToAccountsList()
-                .clickHomePageSignIn()
-                .enterEmail(getPropertyValue("username"))
-                .clickContinue()
-                .enterPassword(getPropertyValue("password"))
-                .clickSignIn()
+        String title = new LandingPage()
                 .typeSearchBox("boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)")
                 .clickSearch()
                 .selectBoatEarPods()
@@ -40,13 +35,7 @@ public class TC001_VerifyEarPodProduct extends BaseTest {
 
     @Test(groups = {"smoke"})
     public void verifyEarPodsSmoke() throws Exception {
-        String title = new HomePage()
-                .mouseOverToAccountsList()
-                .clickHomePageSignIn()
-                .enterEmail(getPropertyValue("username"))
-                .clickContinue()
-                .enterPassword(getPropertyValue("password"))
-                .clickSignIn()
+        String title = new LandingPage()
                 .typeSearchBox("boAt Airdopes 441 Bluetooth Truly Wireless in Ear Earbuds with Mic (Raging Red)")
                 .clickSearch()
                 .selectBoatEarPods()
@@ -63,4 +52,7 @@ public class TC001_VerifyEarPodProduct extends BaseTest {
         Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
         Assert.assertEquals(title, expectedTitle);
     }
+
+
+
 }

@@ -1,8 +1,8 @@
 package com.itppm.constants;
 
-public final class FrameworkContants {
+public final class FrameworkConstants {
 
-    private FrameworkContants() {
+    private FrameworkConstants() {
     }
 
     private static final String CHROMEDRIVERPATH = System.getProperty("user.dir") + "/src/main/java/resources/driver/chromedriver/chromedriver";

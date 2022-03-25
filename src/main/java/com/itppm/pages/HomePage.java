@@ -1,12 +1,12 @@
 package com.itppm.pages;
 
-import com.itppm.base.BaseTest;
+import com.itppm.base.BaseMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class HomePage extends BaseTest {
+public class HomePage extends BaseMethods {
 
     @FindBy(id = "nav-link-accountList")
     private WebElement eleHelloSignIn;
@@ -16,6 +16,8 @@ public class HomePage extends BaseTest {
     private WebElement eleSearchBar;
     @FindBy(xpath = "//*[@type='submit']")
     private WebElement eleSearchIcon;
+    @FindBy(id = "nav-item-signout")
+    private WebElement eleSignOut;
 
     public HomePage() {
         PageFactory.initElements(driver, this);
@@ -39,6 +41,10 @@ public class HomePage extends BaseTest {
 
     public LoginPage clickHomePageSignIn() {
         click(eleSignIn);
+        return new LoginPage();
+    }
+    public LoginPage clickHomePageSignOut() {
+        click(eleSignOut);
         return new LoginPage();
     }
 }

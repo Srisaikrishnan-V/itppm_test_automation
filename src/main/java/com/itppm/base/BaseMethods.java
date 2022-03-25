@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import com.itppm.constants.FrameworkContants;
+import com.itppm.constants.FrameworkConstants;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class BaseMethods {
     public WebDriver initializeDriver(String browser) throws IOException {
         try {
             if (browser.equalsIgnoreCase("chrome")) {
-                System.setProperty("webdriver.chrome.driver", FrameworkContants.getChromedriverpath());
+                System.setProperty("webdriver.chrome.driver", FrameworkConstants.getChromedriverpath());
                 ChromeOptions options = new ChromeOptions();
                 if (browser.equalsIgnoreCase("headless")) {
                     options.addArguments("headless");
@@ -59,7 +59,7 @@ public class BaseMethods {
     public static String getPropertyValue(String key) throws Exception {
         String value = "";
         Properties property = new Properties();
-        FileInputStream file = new FileInputStream(FrameworkContants.getPropertiesfile());
+        FileInputStream file = new FileInputStream(FrameworkConstants.getPropertiesfile());
         property.load(file);
         value = property.getProperty(key);
         if (value == null) {
@@ -287,7 +287,6 @@ public class BaseMethods {
     public void closeCurrentWindow(){
         try {
             driver.close();
-            driver.switchTo().window(driver.getWindowHandle());
             log.info("Current window closed successfully and returned to previous window");
         } catch (Exception e) {
             log.error("Current window not closed successfully");
